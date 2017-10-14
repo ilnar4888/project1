@@ -1,0 +1,6 @@
+= simple_form_for @feedback do |f|
+    = f.input :name, required: false, label: false, placeholder: "Name"
+    = f.input :email, required: false, label: false, placeholder: "Email"
+    = f.input :text, required: false, label: false, placeholder: "Text"
+    br
+    = f.button :submit
