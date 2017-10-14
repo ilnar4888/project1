@@ -1,7 +1,18 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable, :confirmable,
-    :recoverable, :rememberable, :trackable, :validatable
+	before_save :first_user_is_admin
+  
+  devise :database_authenticatable, 
+         :registerable, 
+         :confirmable,
+         :recoverable, 
+         :rememberable, 
+         :trackable, 
+         :validatable
 
   validates :full_name, presence: true
-  has_many :feeedbacks
+
+  private 
+    def first_user_is_admin
+      self.role = "admin" if User.count == 0
+    end
 end

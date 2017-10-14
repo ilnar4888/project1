@@ -1,27 +1,30 @@
 class FeedbacksController < ApplicationController
+ 
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
-
+  before_action :initialize_user_attr, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:index, :edit, :update, :destroy]
+  
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = Feedback.where(email: current_user.email)
   end
 
   def show
   end
 
   def new
-    @feedback = Feedback.new
+    @feedback = Feedback.new 
   end
 
   def edit
   end
 
-  def create
+  def create  
     @feedback = Feedback.new(feedback_params)
-
     if @feedback.save
       redirect_to @feedback, notice: 'Feedback was successfully send!'
     else
-      render :new
+      flash[:notice] = "Error"
+      render "new"
     end
   end
 
@@ -45,5 +48,15 @@ class FeedbacksController < ApplicationController
 
     def feedback_params
       params.require(:feedback).permit(:name, :email, :text)
+    end
+
+    def initialize_user_attr
+      if user_signed_in?
+        @user_name = current_user.full_name 
+        @user_email = current_user.email
+      else
+        @user_name = nil 
+        @user_email = nil
+      end
     end
 end

@@ -1,5 +1,5 @@
 class Feedback < ApplicationRecord
-  
+ 
   #name_validates
   validates :name, presence: true, length: { maximum: 50 }
 

@@ -1,6 +1,5 @@
-p#notice = notice
-
-
-= link_to 'Edit', edit_feedback_path(@feedback)
-'|
-= link_to 'Back', feedbacks_path
+h2 = @feedback.name
+h2 = @feedback.email
+h4 = @feedback.text
+- if user_signed_in?
+	= link_to 'Edit', edit_feedback_path(@feedback)

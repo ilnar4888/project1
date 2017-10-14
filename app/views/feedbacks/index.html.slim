@@ -3,17 +3,18 @@ h1 Listing feedbacks
 table
   thead
     tr
-      th
-      th
-      th
-
+      th Name
+      th Email
+      th Text
+      th Action
   tbody
     - @feedbacks.each do |feedback|
       tr
-        td = link_to 'Show', feedback
-        td = link_to 'Edit', edit_feedback_path(feedback)
-        td = link_to 'Destroy', feedback, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Feedback', new_feedback_path
+        td = link_to feedback.name, feedback_path(feedback)
+        td = link_to feedback.email, feedback_path(feedback)
+        td.size 
+          p= link_to feedback.text, feedback_path(feedback)
+        td 
+          = link_to 'Edit', edit_feedback_path(feedback)
+          br
+          = link_to 'Destroy', feedback, data: { confirm: 'Are you sure?' }, method: :delete

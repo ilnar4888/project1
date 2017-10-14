@@ -1,7 +1,18 @@
 @import "core/all";
 @import "components/all";
 
-.form_feedback {
-	width: 70%;
+.form_body {
+  width: 70%;
   margin: auto;
+  word-wrap: break-word;
+}
+
+.size p {
+  white-space: nowrap; 
+  overflow: hidden;  
+  text-overflow:ellipsis;
+  word-wrap: break-word;
+}
+.size a:hover {
+  white-space: normal;  
 }
