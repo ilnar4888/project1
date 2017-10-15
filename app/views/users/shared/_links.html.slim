@@ -1,8 +1,5 @@
 h6 Anything else?
 ul.no-bullet
-  - if controller_name != "sessions"
-    li = link_to "Sign in", new_session_path(resource_name)
-
   - if devise_mapping.registerable? && controller_name != "registrations"
     li = link_to "Create a new account", new_registration_path(resource_name)
 

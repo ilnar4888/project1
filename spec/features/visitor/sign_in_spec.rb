@@ -15,6 +15,7 @@ feature "Sign In" do
     sign_in(user.email, user.password)
 
     expect(page).to have_content("Sign out")
+    expect(page).to have_content("#{user.full_name}")
   end
 
   scenario "Visitor signs in with invalid credentials" do

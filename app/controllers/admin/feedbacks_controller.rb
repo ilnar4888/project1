@@ -6,20 +6,25 @@ class Admin::FeedbacksController < ApplicationController
   before_action :require_admin
   
   def index
+    authorize Feedback
     @feedbacks = Feedback.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
   end
 
   def show
+    authorize Feedback
   end
 
   def new
+    authorize Feedback
     @feedback = Feedback.new 
   end
 
   def edit
+    authorize Feedback
   end
 
   def create  
+    authorize Feedback
     @feedback = Feedback.new(feedback_params)
     if @feedback.save
       redirect_to admin_feedback_path(@feedback), notice: 'Feedback was successfully send!'
@@ -30,6 +35,7 @@ class Admin::FeedbacksController < ApplicationController
   end
 
   def update
+    authorize Feedback
     if @feedback.update(feedback_params)
       redirect_to admin_feedback_path(feedback), notice: 'Feedback was successfully updated.'
     else
@@ -38,6 +44,7 @@ class Admin::FeedbacksController < ApplicationController
   end
 
   def destroy
+    authorize Feedback
     @feedback.destroy
     redirect_to admin_feedbacks_path, notice: 'Feedback was successfully destroyed.'
   end
@@ -57,6 +64,9 @@ class Admin::FeedbacksController < ApplicationController
     end
 
     def require_admin
-      redirect_to root_path unless current_user.admin?
+      unless current_user.admin?
+        flash[:notice] = "Please log in as admin!"
+        redirect_to root_path
+      end
     end
 end
