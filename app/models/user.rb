@@ -13,6 +13,6 @@ class User < ApplicationRecord
 
   private 
     def first_user_is_admin
-      self.role = "admin" if User.count == 0
+      self.admin = true if User.count == 0
     end
 end

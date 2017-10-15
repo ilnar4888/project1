@@ -1,0 +1,32 @@
+doctype html
+
+html class="no-js" lang="en"
+
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    meta name="robots" content="NOODP,NOYDIR"
+
+    = display_meta_tags site: "RailsBase", keywords: %w(title site)
+    = csrf_meta_tags
+
+    = stylesheet_link_tag :admin
+
+    = javascript_tag "window.App = {}"
+
+    == analytics_init if GoogleAnalytics.valid_tracker?
+
+  body
+    .form_body
+      = render "admin/admin_navigation"
+      = render "admin/admin_messages"
+
+      main.container
+        = yield
+
+      = render "admin/admin_footer"
+
+      javascript:
+        App.currentUserData = #{{current_user.to_json}};
+
+      = javascript_include_tag :admin

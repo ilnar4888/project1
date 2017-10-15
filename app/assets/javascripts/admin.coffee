@@ -9,6 +9,6 @@
 #= require foundation
 #= require current_user
 #= require_tree ../templates
-#= require_tree ./application
+#= require_tree ./admin
 
 $(document).foundation()

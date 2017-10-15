@@ -1,0 +1,23 @@
+h1 Listing feedbacks
+
+table
+  thead
+    tr
+      th Name
+      th Email
+      th Text
+      th Action
+  tbody
+    - @feedbacks.each do |feedback|
+      tr
+        td = link_to feedback.name, admin_feedback_path(feedback)
+        td = link_to feedback.email, admin_feedback_path(feedback)
+        td.size 
+          p= link_to feedback.text, admin_feedback_path(feedback)
+        td 
+          = link_to 'Edit', edit_admin_feedback_path(feedback)
+          br
+          = link_to 'Destroy', [:admin, feedback], data: { confirm: 'Are you sure?' }, method: :delete
+br
+.apple_pagination
+  = will_paginate @feedbacks, container: false
