@@ -1,5 +1,6 @@
 class Feedback < ApplicationRecord
- 
+  include PgSearch
+   pg_search_scope :search_everywhere, against: [:name, :email, :text]
   #name_validates
   validates :name, presence: true, length: { maximum: 50 }
 

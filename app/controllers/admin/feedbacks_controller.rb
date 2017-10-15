@@ -7,7 +7,6 @@ class Admin::FeedbacksController < ApplicationController
   
   def index
     @feedbacks = Feedback.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
-    Rails.logger.debug(" jkkkbbk#{current_user.admin?}")
   end
 
   def show

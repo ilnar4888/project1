@@ -1,5 +1,8 @@
 @import "core/all";
 @import "components/all";
+nav.top-bar {
+  height: 50px;
+}
 .digg_pagination {
   background: white;
   cursor: default;
@@ -118,4 +121,13 @@
 }
 .size a:hover {
   white-space: normal;  
+}
+.search_1{
+  position: relative;
+  margin-top: -10px;
+}
+.submit_1{
+  position: relative;
+  margin-left: 210px;
+  margin-top: -32px;
 }

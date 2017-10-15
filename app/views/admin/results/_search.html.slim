@@ -1,0 +1,6 @@
+.searchbox_1
+	= simple_form_for :search, url: admin_search_path, method: :get  do |f|
+	  .search_1  
+	    = f.input :query, required: false, label: false, placeholder: "Search", autofocus: true, input_html: {class: "search_1"}
+	  .submit_1
+		  = f.submit "search", input_html: {class: "submit_1"}

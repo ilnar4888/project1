@@ -47,6 +47,7 @@ gem "rollbar"
 gem "seedbank"
 gem "stackprof"
 gem 'will_paginate', '>= 3.1'
+gem "pg_search"
 
 group :staging, :production do
   gem "newrelic_rpm"
