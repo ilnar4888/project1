@@ -5,7 +5,6 @@ class Admin::ResultsController < ApplicationController
 
   def search
     @feedbacks = Feedback.search_everywhere(params[:query])
-    Rails.logger.debug("hjjhvhj  #{@feedbacks}")
     render "feedbacks/index"
   end
 
