@@ -21,6 +21,7 @@ class FeedbacksController < ApplicationController
   def create  
     @feedback = Feedback.new(feedback_params)
     if @feedback.save
+      SendEmailToAdmin.call(feedback: @feedback, admin_users: User.where(admin: true)) unless user_signed_in?
       redirect_to @feedback, notice: 'Feedback was successfully send!'
     else
       flash[:notice] = "Error"

@@ -51,6 +51,7 @@ gem "pg_search"
 
 group :staging, :production do
   gem "newrelic_rpm"
+  gem "rails_12factor"
 end
 
 group :test do
