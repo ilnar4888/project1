@@ -1,6 +1,5 @@
-.searchbox_1
-	= simple_form_for :search, url: admin_search_path, method: :get  do |f|
-	  .search_1  
-	    = f.input :query, required: false, label: false, placeholder: "Search", autofocus: true, input_html: {class: "search_1"}
-	  .submit_1
-		  = f.submit "search", input_html: {class: "submit_1"}
+= form_tag admin_results_path, method: :get, role: 'search' do  
+  .search_1  
+    = text_field_tag :query, params[:query], placeholder: "Search"
+  .submit_1
+	  = submit_tag "Search", name: nil

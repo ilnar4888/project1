@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   root to: "pages#home"
   namespace :admin do
+    get "results", to: "results#search", as: "results"
     resources :feedbacks
-    get "search", to: "results#search", as: "search"
   end
 end

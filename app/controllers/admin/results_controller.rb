@@ -1,14 +1,12 @@
-class Admin::Results < ApplicationController
+class Admin::ResultsController < ApplicationController
   layout "admin"
   before_action :authenticate_user!
   before_action :require_admin
-  
-  def index
-    @feedbacks = Feedback.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
-    Rails.logger.debug(" jkkkbbk#{current_user.admin?}")
-  end
 
   def search
+    @feedbacks = Feedback.search_everywhere(params[:query])
+    Rails.logger.debug("hjjhvhj  #{@feedbacks}")
+    render "feedbacks/index"
   end
 
   private
