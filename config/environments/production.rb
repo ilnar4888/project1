@@ -67,7 +67,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable Email delivery via custom SMTP server or via SendGrid by default
-  config.action_mailer.default_url_options = { ENV["HOST"] }
+  config.action_mailer.default_url_options = { host: "feedback25.herokuapp.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
