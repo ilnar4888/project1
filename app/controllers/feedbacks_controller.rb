@@ -42,6 +42,9 @@ class FeedbacksController < ApplicationController
     redirect_to feedbacks_url, notice: 'Feedback was successfully destroyed.'
   end
 
+  def search
+  end
+
   private
     def set_feedback
       @feedback = Feedback.find(params[:id])

@@ -3,7 +3,6 @@ class Admin::FeedbacksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
   before_action :initialize_user_attr, only: [:new, :edit]
-  before_action :require_admin
   
   def index
     authorize Feedback
@@ -49,6 +48,17 @@ class Admin::FeedbacksController < ApplicationController
     redirect_to admin_feedbacks_path, notice: 'Feedback was successfully destroyed.'
   end
 
+  def search
+    @feedbacks = Feedback.search_everywhere(params[:query]).paginate(page: params[:page], per_page: 5).order(created_at: :desc)
+    if @feedbacks.any?
+      render "admin/feedbacks/index"
+    else 
+      flash[:notice] = "Unfortunately your search found nothing."
+      render "admin/feedbacks/index"
+    end
+  end
+
+
   private
     def set_feedback
       @feedback = Feedback.find(params[:id])
@@ -61,12 +71,5 @@ class Admin::FeedbacksController < ApplicationController
     def initialize_user_attr
       @user_name = current_user.full_name 
       @user_email = current_user.email
-    end
-
-    def require_admin
-      unless current_user.admin?
-        flash[:notice] = "Please log in as admin!"
-        redirect_to root_path
-      end
     end
 end
