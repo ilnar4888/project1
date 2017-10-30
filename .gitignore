@@ -8,6 +8,7 @@ doc/**/*
 vendor/bundle
 vendor/cache
 vendor/ruby
+public/assets
 .sass-cache
 ._*
 .env
