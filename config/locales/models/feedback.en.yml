@@ -1,0 +1,34 @@
+en:
+  simple_form:
+    labels:
+      feedback:
+        name: "Name"
+        email: "Email"
+        text: "Text"
+    placeholders:
+      feedback:
+        name: "Name"
+        email: "Email"
+        text: "Text"
+  flash:
+    feedbacks:
+      create:
+        notice: "Feedback was successfully created."
+        alert: "Feedback could not be created."
+      update:
+        notice: "Feedback was successfully updated."
+        alert: "Feedback could not be updated."
+      destroy:
+        notice: "Feedback was successfully destroyed."
+        alert: "Feedback could not be destroyed."      
+  activerecord:
+    errors:
+      models:
+        feedback:
+          attributes:
+            name:
+              blank: "Name can not be blank"
+            email:
+              blank: "Email can not be blank"
+            text:
+              blank: "Text can not be blank"            

@@ -1,6 +1,6 @@
-= simple_form_for [:admin, @feedback] do |f|
-  = f.input :name, required: false, label: false, placeholder: "Name", input_html: {value: "#{@user_name}"}
-  = f.input :email, required: false, label: false, placeholder: "Email", input_html: {value: "#{@user_email}"}
-  = f.input :text, required: false, label: false, placeholder: "Text"
+= simple_form_for [:admin, feedback] do |f|
+  = f.input :name, required: false, label: false, input_html: {value: "#{@user_name}"}
+  = f.input :email, required: false, label: false, input_html: {value: "#{@user_email}"}
+  = f.input :text, required: false, label: false
   br
   = f.button :submit

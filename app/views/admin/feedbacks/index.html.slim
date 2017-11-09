@@ -1,5 +1,7 @@
-- if @feedbacks.any?  
-  h1 Listing feedbacks
+- if !feedbacks.present?  
+  h3 Unfortunately couldn't find suitable feedbacks
+- else  
+  h3 Listing feedbacks
 
   table
     thead
@@ -9,7 +11,7 @@
         th Text
         th Action
     tbody
-      - @feedbacks.each do |feedback|
+      - feedbacks.each do |feedback|
         tr
           td = link_to feedback.name, admin_feedback_path(feedback)
           td = link_to feedback.email, admin_feedback_path(feedback)
@@ -21,4 +23,4 @@
             = link_to 'Destroy', [:admin, feedback], data: { confirm: 'Are you sure?' }, method: :delete
   br
   .apple_pagination
-    = will_paginate @feedbacks, container: false
+    = will_paginate feedbacks, container: false

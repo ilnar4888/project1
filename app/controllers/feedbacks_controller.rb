@@ -1,57 +1,34 @@
 class FeedbacksController < ApplicationController
  
-  before_action :set_feedback, only: [:show, :edit, :update, :destroy]
-  before_action :initialize_user_attr, only: [:new, :edit]
-  before_action :authenticate_user!, only: [:index, :edit, :update, :destroy]
+  before_action :initialize_user_attr, only: :new
+  before_action :authenticate_user!, only: :index
+  after_action :send_email, only: :create
+
+  expose :feedback
+  expose :feedbacks, -> { Feedback.where(name: current_user.full_name) }
   
   def index
-    @feedbacks = Feedback.where(email: current_user.email)
   end
 
   def show
   end
 
-  def new
-    @feedback = Feedback.new 
-  end
-
-  def edit
+  def new 
   end
 
   def create  
-    @feedback = Feedback.new(feedback_params)
-    if @feedback.save
-      SendEmailToAdmin.call(feedback: @feedback, admin_users: User.where(admin: true)) unless user_signed_in?
-      redirect_to @feedback, notice: 'Feedback was successfully send!'
-    else
-      flash[:notice] = "Error"
-      render "new"
-    end
-  end
-
-  def update
-    if @feedback.update(feedback_params)
-      redirect_to @feedback, notice: 'Feedback was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @feedback.destroy
-    redirect_to feedbacks_url, notice: 'Feedback was successfully destroyed.'
-  end
-
-  def search
+    feedback.save
+    respond_with feedback
   end
 
   private
-    def set_feedback
-      @feedback = Feedback.find(params[:id])
-    end
 
     def feedback_params
       params.require(:feedback).permit(:name, :email, :text)
+    end
+
+    def send_email
+      SendEmailToAdmin.call(feedback: feedback, admin_users: User.where(admin: true)) if !user_signed_in?
     end
 
     def initialize_user_attr

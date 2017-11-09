@@ -46,8 +46,8 @@ gem "responders"
 gem "rollbar"
 gem "seedbank"
 gem "stackprof"
-gem 'will_paginate', '>= 3.1'
-gem "pg_search"
+gem "will_paginate", ">= 3.1"
+gem "responders"
 
 group :staging, :production do
   gem "newrelic_rpm"

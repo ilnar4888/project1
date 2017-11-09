@@ -33,4 +33,8 @@ class FeedbackPolicy
   def destroy?
     @current_user.admin?
   end
+
+  def search?
+    @current_user.admin?
+  end
 end
