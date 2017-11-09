@@ -2,13 +2,14 @@ class Admin::FeedbacksController < ApplicationController
   layout "admin"
   
   before_action :authenticate_user!
-  before_action :authorize_admin!, except: [:edit] 
+  before_action :authorize_admin!, except: [:index]
   before_action :initialize_user_attr, only: [:new, :edit]
   
   expose :feedback
   expose :feedbacks, -> { requests_feedbacks }   
   
   def index
+    authorize Feedback
   end
 
   def show
@@ -18,7 +19,7 @@ class Admin::FeedbacksController < ApplicationController
   end
 
   def edit
-    authorize Feedback
+    authorize feedback
   end
 
   def create  

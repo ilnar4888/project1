@@ -7,7 +7,6 @@
         th Name
         th Email
         th Text
-        th Action
     tbody
       - feedbacks.each do |feedback|
         tr
@@ -15,9 +14,5 @@
           td = link_to feedback.email, feedback_path(feedback)
           td.size 
             p= link_to feedback.text, feedback_path(feedback)
-          td 
-            = link_to 'Edit', edit_feedback_path(feedback)
-            br
-            = link_to 'Destroy', feedback, data: { confirm: 'Are you sure?' }, method: :delete
 - else
   h1 You have no created feedbacks!  
